@@ -5,4 +5,14 @@
  */
 export function invertObj(obj) {
 
+let obj2 = {};
+for (let keys in obj) {
+    if (obj.hasOwnProperty(keys)) {
+        obj2[obj[keys]] = keys;
+    }
+}
+
+if (typeof(obj) === 'object'){
+     return obj2;}
+     else return obj;
 }
