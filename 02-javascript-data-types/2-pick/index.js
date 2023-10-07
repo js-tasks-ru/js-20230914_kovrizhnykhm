@@ -5,5 +5,9 @@
  * @returns {object} - returns the new object
  */
 export const pick = (obj, ...fields) => {
-
-};
+  const objcopy = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (fields.includes(key)) objcopy[key] = value;
+  }
+  return objcopy;
+}
