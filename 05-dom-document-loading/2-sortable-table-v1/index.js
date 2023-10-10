@@ -68,24 +68,24 @@ export default class SortableTable {
 
   sort(field, order) {
     const sortType = this.headerConfig.find(column => column.id === field).sortType;
-
+  
     const sortedData = [...this.data];
-
+  
     sortedData.sort((a, b) => {
       const aValue = a[field];
       const bValue = b[field];
-
+  
       if (sortType === 'number') {
         return order === 'asc' ? aValue - bValue : bValue - aValue;
       } else if (sortType === 'string') {
-        return order === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+        return order === 'asc' ? aValue.localeCompare(bValue, ['ru', 'en'], { caseFirst: 'upper' }) : bValue.localeCompare(aValue, ['ru', 'en'], { caseFirst: 'upper' });
       } else if (sortType === 'date') {
-        //Здесь будет сортировка по дате. В условии есть, в данных нет примеров
+        // Здесь будет сортировка по дате
       }
-
+  
       return 0;
     });
-
+  
     this.data = sortedData;
     this.subElements.body.innerHTML = this.getRowsTemplate();
   }
