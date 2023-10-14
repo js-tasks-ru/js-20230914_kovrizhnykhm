@@ -107,6 +107,12 @@ export default class SortableTable {
     this.sort(id, order);
   }
 
+  addArrowToColumn(column) {
+    if (column) {
+      column.innerHTML += this.arrowTemplate;
+    }
+  }
+
   destroy() {
     this.element.remove();
   }
