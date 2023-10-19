@@ -19,7 +19,7 @@
     </div>
 
     <script type="module">
-      import ColumnChart from './index.js';
+      import ColumnChartV3 from './index.js';
 
       const getRange = () => {
         const now = new Date();
@@ -33,11 +33,12 @@
 
       const startInput = document.getElementById('start');
       const endInput = document.getElementById('end');
+      const loadOrders = document.getElementById('loadOrders');
 
       startInput.value = from.toISOString().split('T')[0];
       endInput.value = to.toISOString().split('T')[0];
 
-      const ordersChart = new ColumnChart({
+      const ordersChart = new ColumnChartV3({
         url: 'api/dashboard/orders',
         range: {
           from,
@@ -51,7 +52,7 @@
         ordersChart.update(new Date(start.value), new Date(end.value))
       });
 
-      const salesChart = new ColumnChart({
+      const salesChart = new ColumnChartV3({
         url: 'api/dashboard/sales',
         range: {
           from,
@@ -61,7 +62,7 @@
         formatHeading: data => `$${data}`
       });
 
-      const customersChart = new ColumnChart({
+      const customersChart = new ColumnChartV3({
         url: 'api/dashboard/customers',
         range: {
           from,
